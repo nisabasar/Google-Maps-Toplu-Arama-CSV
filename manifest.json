@@ -1,0 +1,38 @@
+{
+  "manifest_version": 3,
+  "name": "Google Maps Extractor",
+  "version": "1.0",
+  "description": "Extract business data from Google Maps and export to CSV.",
+  "permissions": [
+    "scripting",
+    "activeTab",
+    "downloads"
+  ],
+  "host_permissions": [
+    "https://www.google.com/maps/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "icon.png"
+  },
+  "icons": {
+        "16": "icon.png",
+        "48": "icon.png",
+        "128": "icon.png"
+    },
+  "web_accessible_resources": [
+        {
+          "resources": ["icon.png"],
+          "matches": ["<all_urls>"]
+        }
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://www.google.com/maps/*"],
+      "js": ["content.js"]
+    }
+  ]
+}
