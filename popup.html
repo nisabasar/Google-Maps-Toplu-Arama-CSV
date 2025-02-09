@@ -1,66 +1,102 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Google Maps Veri Çıkarıcı</title>
   <style>
-    /* Popup kutusunun tamamını yuvarlatır */
     body {
-      font-family: 'Arial', sans-serif;
-      margin: 0;
+      font-family: Arial, sans-serif;
+      margin: 0; 
       padding: 0;
-      display: flex;
-      align-items: center;
+      display: flex; 
+      align-items: center; 
       justify-content: center;
-      width: 300px; /* Popup genişliği */
-      height: 180px; /* Popup yüksekliği */
+      width: 300px; 
+      height: 320px; 
       background-color: #fff;
-      border-radius: 16px; /* Tüm kutuyu yuvarlatır */
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Gölgeli görünüm */
-      border: 1px solid #ddd; /* İnce bir kenarlık */
+      border-radius: 16px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      border: 1px solid #ddd;
     }
-
     .container {
-      text-align: center;
+      text-align: center; 
       padding: 10px;
     }
-
     h2 {
-      font-size: 18px;
-      color: #007bff;
+      font-size: 18px; 
+      color: #007bff; 
       margin-bottom: 10px;
     }
-
     button {
-      padding: 15px 15px;
-      background-color: #28a745;
+      padding: 10px 15px; 
+      background-color: #28a745; 
       color: #fff;
-      border: none;
-      border-radius: 6px; /* Daha kare bir görünüm */
-      font-size: 15px;
+      border: none; 
+      border-radius: 6px; 
+      font-size: 15px; 
       font-weight: bold;
-      cursor: pointer;
+      cursor: pointer; 
       transition: background-color 0.3s ease, transform 0.2s ease;
+      margin: 5px 0;
+    }
+    button:hover {
+      background-color: #218838; 
+      transform: scale(1.01);
+    }
+    p {
+      font-size: 14px; 
+      color: #555; 
+      margin-top: 10px;
+    }
+    /* Dosya yükle butonunu gizleyelim, yerine label kullanalım */
+    #txtFile {
+      display: none;
     }
 
-    button:hover {
-      background-color: #218838;
+    /* Label'i buton stilinde */
+    label[for="txtFile"] {
+      display: inline-block;
+      background-color: #007bff;
+      color: #fff;
+      padding: 10px 15px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: bold;
+      margin: 5px 0;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+    label[for="txtFile"]:hover {
+      background-color: #0056b3;
       transform: scale(1.01);
     }
 
-    p {
+    /* Seçilen dosya adını göstereceğimiz alan */
+    #fileName {
+      display: block;
+      margin-top: 5px;
       font-size: 14px;
       color: #555;
-      margin-top: 10px;
+      text-align: center;
     }
   </style>
 </head>
 <body>
   <div class="container">
     <h2>Google Maps Veri Çıkarıcı</h2>
+    <!-- Tek arama için buton -->
     <button id="openMaps">Google Maps'i Aç</button>
-    <p>İşletme bilgilerini kolayca çıkarabilirsiniz.</p>
+    <p>Haritayı açın, arama kutusuna yazın<br/>ve panelden 'Başlat' butonuna tıklayın.</p>
+
+    <!-- Gizli input: .txt seçmek için -->
+    <input type="file" id="txtFile" accept=".txt" />
+    <!-- Görünen buton gibi label -->
+    <label for="txtFile">Dosya Seç</label>
+    <span id="fileName">Seçili dosya yok</span>
+
+    <button id="startBatchSearch">Toplu Arama Yap</button>
+    <p>TXT içindeki sorguları sırayla arar.</p>
   </div>
   <script src="popup.js"></script>
 </body>
