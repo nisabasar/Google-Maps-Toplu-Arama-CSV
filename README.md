@@ -35,9 +35,9 @@ Chrome eklentisi şeklinde hazırladığımız bu proje, Google Maps üzerinde *
 ### Toplu Arama
 
 1. Bir `.txt` dosyası oluşturun. Her satıra bir sorgu yazın. Örnek:
-   ####restoran ata istanbul
-   ####kuaför atakule
-   ####bilişim otomasyon ata
+   ###restoran ata istanbul
+   ###kuaför atakule
+   ###bilişim otomasyon ata
    
 2. Eklenti penceresini açın, “Dosya Seç” butonuna tıklayıp `.txt` dosyasını seçin. Seçtiğiniz dosyanın adı da hemen altında yazacaktır.
 3. “Toplu Arama Yap” butonuna tıkladığınızda, eklenti yeni bir Google Maps sekmesi açar ve `.txt`’deki sorguları **sırayla** arar.
