@@ -43,6 +43,12 @@ const createControlPanel = () => {
 const extractData = async (button) => {
     button.innerText = "Yükleniyor...";
     await scrollToEnd();
+    
+    let searchQuery = "isletme_bilgileri";
+    const searchInput = document.getElementById('searchboxinput');
+    if (searchInput && searchInput.value.trim()) {
+        searchQuery = searchInput.value.trim();
+    }
 
     const results = [];
     const businessElements = document.querySelectorAll('div.Nv2PK.THOPZb');
@@ -66,7 +72,11 @@ const extractData = async (button) => {
 
     console.log("Extracted Data:", results);
 
-    chrome.runtime.sendMessage({ action: "exportData", data: results }, (response) => {
+    chrome.runtime.sendMessage({ 
+        action: "exportData", 
+        data: results,
+        searchQuery: searchQuery 
+    }, (response) => {
         if (chrome.runtime.lastError) {
             console.error("Runtime error:", chrome.runtime.lastError.message);
             button.innerText = "Hata!";

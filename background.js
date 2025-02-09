@@ -4,6 +4,7 @@
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (message.action === "exportData" && message.data) {
         const data = message.data;
+        const searchQuery = message.searchQuery || "isletme_bilgileri";
 
         try {
             const normalizeText = (text) => {
@@ -54,11 +55,13 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
             console.log("Generated Blob URL:", url); // URL kontrolü
 
+            const fileName = normalizeText(searchQuery.replace(/\s+/g, "_")) + ".csv";
+
             // İndirme işlemi
             chrome.downloads.download({
                 url: url,
-                filename: "isletme_bilgileri.csv",
-                saveAs: true
+                filename: fileName,
+                saveAs: false
             }, (downloadId) => {
                 if (chrome.runtime.lastError) {
                     console.error("Download API error:", chrome.runtime.lastError.message);
